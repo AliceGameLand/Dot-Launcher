@@ -4,7 +4,11 @@
 
 사용자가 제공한 캐릭터를 내장 image_gen 도구로 배경만 투명하게 처리했습니다.
 원본 출력: app/assets/images/DotLauncher.png. 빌드 및 화면용 PNG/ICO는 이 이미지에서 변환했습니다.
-프롬프트: 바깥 흰 배경만 제거하고 캐릭터 내부의 흰색·연분홍 영역, 갈색 선, 표정과 분홍·민트 색상을 불투명하게 유지한다. 그림·문자·그림자·흰 테두리를 추가하지 않는다.
+실제 image_gen 편집 프롬프트 (transparent_background=true):
+
+```text
+Use case: background-extraction. Edit target: the provided square hand-drawn character image. Remove ONLY the exterior white background surrounding the character, including exterior space connected to the image border. Keep the exact original illustration, brown outlines, face, costume, pastel pink and mint colors and framing. Crucially preserve all enclosed white and pale pink regions INSIDE the character: face, ears/hood and clothing must remain opaque. No redraw, no added elements, no text, no shadow, no white border. Return a clean cutout on a genuinely transparent alpha background at the original square composition.
+```
 
 ## 배경
 
