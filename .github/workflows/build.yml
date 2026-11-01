@@ -25,6 +25,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Regression tests
+        run: node --test test/*.test.js
+
       - name: Prepare bundled Temurin JDK 25
         run: npm run runtime:prepare
 
