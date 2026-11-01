@@ -1,8 +1,8 @@
 const authConfig = require('../config/auth.json')
 
-// ALICE_MS_CLIENT_ID is useful for local testing. Packaged releases should set
+// DOT_MS_CLIENT_ID is useful for local testing. Packaged releases should set
 // azureClientId in assets/config/auth.json before building.
-exports.AZURE_CLIENT_ID = process.env.ALICE_MS_CLIENT_ID || authConfig.azureClientId
+exports.AZURE_CLIENT_ID = process.env.DOT_MS_CLIENT_ID || authConfig.azureClientId
 
 
 // Opcodes

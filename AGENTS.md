@@ -1,18 +1,20 @@
-# 앨리스의 게임랜드 런처 작업 지침
+# 귀염뽀쨕도트 런처 작업 지침
 
 ## 프로젝트 구조
 
-- 이 저장소는 Electron 기반 Helios 런처다. 게임 파일과 서버별 모드 목록은 형제 저장소 `../AliceGameLand-Distribution/distribution.json`에서 관리한다.
+- 이 저장소는 Electron 기반 Helios 런처다. 게임 파일은 기존 AliceGameLand-Distribution 공개 배포를 읽으며 `AliceDiamond-26.2`만 허용한다. 원본 런처나 배포 저장소를 변경하지 않는다.
 - 게임 설정은 서버별 `instances/<서버 ID>/options.txt`와 `config/iris.properties`에 저장된다. 런처 소스와 배포 매니페스트를 함께 확인한다.
 - 기존 작업 파일과 사용자 설정을 보존한다. 요청 범위 밖의 변경, 배포, 게임 또는 서버 실행은 하지 않는다.
 
 ## GitHub 저장소와 주소
 
-- 런처 원본은 `AliceGameLand/AliceGameLand-Launcher`, 배포 원본은 `AliceGameLand/AliceGameLand-Distribution`이다. 두 GitHub 저장소는 다운로드와 자동 업데이트를 위해 public으로 유지한다.
+- 이 런처 저장소는 `AliceGameLand/Dot-Launcher`이며 기반 원본은 `AliceGameLand/AliceGameLand-Launcher`다. 배포 원본은 `AliceGameLand/AliceGameLand-Distribution`이다. 런처와 배포 GitHub 저장소는 다운로드와 자동 업데이트를 위해 public으로 유지한다.
 - 새 주소는 `https://github.com/AliceGameLand/`를 기준으로 작성한다. 이전 `Dot0420` 주소의 리다이렉트에 의존하거나 개인 계정에 같은 이름의 저장소를 다시 만들지 않는다.
 - 주소를 바꿀 때는 `package.json`의 저장소·문의 링크, `electron-builder.yml`의 게시 대상, `dev-app-update.yml`, `distromanager.js`, 업데이트 릴리스 노트, `_custom.toml`, README와 배포 저장소의 매니페스트·생성 스크립트를 함께 확인한다.
 - `package.json`의 `private: true`는 npm 게시 방지 설정이므로 GitHub 공개 여부와 혼동해 변경하지 않는다.
 - 기존 설치본과 이미 게시한 릴리스는 소스 수정만으로 바뀌지 않는다. 새 릴리스 게시 전까지 기존 주소의 다운로드와 업데이트 연결도 유지한다.
+
+- 앱 ID는 `kr.dreamcraft.dot.launcher`, 설정 폴더는 `dot-launcher`, 게임 폴더는 `.dotlauncher`다. 앨리스 계정·캐시·인스턴스를 자동으로 가져오지 않는다.
 
 ## 신규 설치 기본값
 

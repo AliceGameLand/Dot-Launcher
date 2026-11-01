@@ -1,13 +1,13 @@
 {
-  "name": "alice-gameland-launcher",
-  "version": "1.0.18",
-  "productName": "앨리스의 게임랜드",
-  "description": "앨리스의 게임랜드 Minecraft 런처",
+  "name": "dot-launcher",
+  "version": "1.0.0",
+  "productName": "귀염뽀쨕도트 런처",
+  "description": "귀염뽀쨕도트 Minecraft 런처",
   "author": "JooHwan Kim <gptnr2140@gmail.com>",
   "license": "UNLICENSED",
-  "homepage": "https://github.com/AliceGameLand/AliceGameLand-Launcher",
+  "homepage": "https://github.com/AliceGameLand/Dot-Launcher",
   "bugs": {
-    "url": "https://github.com/AliceGameLand/AliceGameLand-Launcher/issues"
+    "url": "https://github.com/AliceGameLand/Dot-Launcher/issues"
   },
   "private": true,
   "main": "index.js",
@@ -50,6 +50,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AliceGameLand/AliceGameLand-Launcher.git"
+    "url": "git+https://github.com/AliceGameLand/Dot-Launcher.git"
   }
 }

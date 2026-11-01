@@ -1,6 +1,6 @@
-appId: 'kr.dreamcraft.alicegameland.launcher'
-productName: '앨리스의 게임랜드'
-artifactName: 'alice-gameland-launcher-setup-${version}.${ext}'
+appId: 'kr.dreamcraft.dot.launcher'
+productName: '귀염뽀쨕도트 런처'
+artifactName: 'dot-launcher-setup-${version}.${ext}'
 
 copyright: 'Copyright © 2026 JooHwan Kim. Helios Launcher © Daniel Scalzi.'
 
@@ -10,7 +10,7 @@ compression: 'maximum'
 publish:
   provider: github
   owner: AliceGameLand
-  repo: AliceGameLand-Launcher
+  repo: Dot-Launcher
 
 files:
   - '!{dist,runtime,.runtime-cache,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,eslint.config.mjs}'
@@ -49,8 +49,8 @@ linux:
   icon: 'build/icon.png'
   target: 'AppImage'
   maintainer: 'JooHwan Kim'
-  vendor: 'Alice GameLand'
-  synopsis: '앨리스의 게임랜드 Minecraft 런처'
+  vendor: 'AliceGameLand'
+  synopsis: '귀염뽀쨕도트 Minecraft 런처'
   description: 'Minecraft 26.2와 NeoForge 클라이언트를 자동으로 설치하고 업데이트합니다.'
   category: 'Game'
 

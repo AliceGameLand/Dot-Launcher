@@ -7,9 +7,12 @@ const autoUpdater                       = require('electron-updater').autoUpdate
 const ejse                              = require('ejs-electron')
 const isDev                             = require('./app/assets/js/isdev')
 const path                              = require('path')
-// 로컬 미니게임 실행은 별도 프로필에서 개발 배포 인덱스를 읽는다.
-if(process.env.ALICE_LOCAL_DISTRIBUTION === '1' && process.env.ALICE_LOCAL_PROFILE){
-    app.setPath('userData', path.resolve(process.env.ALICE_LOCAL_PROFILE))
+// 원본 런처의 계정과 캐시를 사용하지 않도록 개발 실행도 같은 전용 폴더를 쓴다.
+app.setName('귀염뽀쨕도트 런처')
+app.setPath('userData', path.join(app.getPath('appData'), 'dot-launcher'))
+// 로컬 검증은 별도 프로필에서 개발 배포 인덱스를 읽는다.
+if(process.env.DOT_LOCAL_DISTRIBUTION === '1' && process.env.DOT_LOCAL_PROFILE){
+    app.setPath('userData', path.resolve(process.env.DOT_LOCAL_PROFILE))
 }
 const semver                            = require('semver')
 const { pathToFileURL }                 = require('url')

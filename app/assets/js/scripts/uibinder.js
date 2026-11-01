@@ -123,7 +123,7 @@ async function showMainUI(data){
 
         // If this is enabled in a development environment we'll get ratelimited.
         // The relaunch frequency is usually far too high.
-        if((!isDev || process.env.ALICE_LOCAL_DISTRIBUTION === '1') && isLoggedIn){
+        if((!isDev || process.env.DOT_LOCAL_DISTRIBUTION === '1') && isLoggedIn){
             validateSelectedAccount()
         }
 

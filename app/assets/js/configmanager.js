@@ -8,7 +8,7 @@ const logger = LoggerUtil.getLogger('ConfigManager')
 
 const sysRoot = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
-const dataPath = path.join(sysRoot, '.alicegameland')
+const dataPath = path.join(sysRoot, '.dotlauncher')
 
 const launcherDir = require('@electron/remote').app.getPath('userData')
 
@@ -275,14 +275,6 @@ exports.getSelectedServer = function(def = false){
  */
 exports.setSelectedServer = function(serverID){
     config.selectedServer = serverID
-}
-
-// 신규 대결 인스턴스를 한 번 기본 선택한 뒤에는 사용자의 선택을 유지한다.
-exports.selectDiamondDefaultOnce = function(){
-    if(config.diamondDefaultSelected) return false
-    config.selectedServer = 'AliceDiamond-26.2'
-    config.diamondDefaultSelected = true
-    return true
 }
 
 /**
