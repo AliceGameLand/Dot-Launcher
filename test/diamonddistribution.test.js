@@ -12,7 +12,7 @@ function fixture(){
         servers: [
             { id: 'other', name: 'Other', mainServer: true, address: 'localhost', minecraftVersion: '26.2', modules: [] },
             {
-                id: 'AliceDiamond-26.2', name: '버컴퍼니 다이아몬드 대결', mainServer: false,
+                id: 'DiamondCK-26.2', name: '다이아ck', mainServer: false,
                 address: 'diamond.example.test:25565', minecraftVersion: '26.2',
                 modules: [{ id: 'diamond:options', name: 'options', type: 'File', artifact: {
                     path: 'options.txt', url: 'https://example.test/options.txt', size: 1
@@ -47,8 +47,8 @@ test('remote index exposes and caches only Diamond while keeping its download me
     const source = fixture()
     const { api, directory } = await setup(t, source)
     const result = await api.getDistribution()
-    assert.deepEqual(result.servers.map(server => server.rawServer.id), ['AliceDiamond-26.2'])
-    assert.equal(result.getMainServer().rawServer.name, '버컴퍼니 다이아몬드 대결')
+    assert.deepEqual(result.servers.map(server => server.rawServer.id), ['DiamondCK-26.2'])
+    assert.equal(result.getMainServer().rawServer.name, '다이아ck')
     assert.deepEqual(result.getMainServer().rawServer.modules, source.servers[1].modules)
     assert.equal(source.servers[1].mainServer, false)
     const cached = JSON.parse(await fs.readFile(path.join(directory, 'distribution.json'), 'utf8'))
@@ -61,7 +61,7 @@ test('network failure filters a multi-server cache before selecting the default'
     await fs.writeFile(path.join(directory, 'distribution.json'), JSON.stringify(fixture()))
     const result = await api.getDistribution()
     assert.equal(result.servers.length, 1)
-    assert.equal(result.getMainServer().rawServer.id, 'AliceDiamond-26.2')
+    assert.equal(result.getMainServer().rawServer.id, 'DiamondCK-26.2')
 })
 
 test('a remote index missing Diamond uses the valid cache without overwriting it', async t => {
@@ -99,5 +99,23 @@ test('local development and local-only loading enforce the same instance restric
     await fs.writeFile(path.join(directory, 'distribution_dev.json'), JSON.stringify(fixture()))
     const result = await api.getDistributionLocalLoadOnly()
     assert.equal(result.servers.length, 1)
-    assert.equal(result.getMainServer().rawServer.id, 'AliceDiamond-26.2')
+    assert.equal(result.getMainServer().rawServer.id, 'DiamondCK-26.2')
+})
+
+test('old Alice distribution caches cannot launch the retired content instance', async t => {
+    const legacy = fixture()
+    legacy.servers[1].id = 'AliceDiamond-26.2'
+    const { api, directory } = await setup(t, {}, 404)
+    await fs.writeFile(path.join(directory, 'distribution.json'), JSON.stringify(legacy))
+    await assert.rejects(api.getDistribution(), /Unable to load distribution/)
+})
+
+test('old Alice remote data cannot replace the new independent cached instance', async t => {
+    const legacy = fixture()
+    legacy.servers[1].id = 'AliceDiamond-26.2'
+    const { api, directory } = await setup(t, legacy)
+    await fs.writeFile(path.join(directory, 'distribution.json'), JSON.stringify(fixture()))
+    const result = await api.getDistribution()
+    assert.equal(result.getMainServer().rawServer.id, 'DiamondCK-26.2')
+    assert.equal(result.getServerById('AliceDiamond-26.2'), null)
 })

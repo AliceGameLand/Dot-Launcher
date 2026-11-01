@@ -1,6 +1,6 @@
 const { DistributionAPI } = require('helios-core/common')
 
-const DIAMOND_SERVER_ID = 'AliceDiamond-26.2'
+const DIAMOND_SERVER_ID = 'DiamondCK-26.2'
 
 // 원격·캐시에 같은 제한을 적용해야 새 서버가 추가되어도 목록이 바뀌지 않는다.
 function selectDiamondDistribution(distribution){

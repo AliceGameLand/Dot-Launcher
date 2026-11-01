@@ -9,7 +9,7 @@ supportLink = "https://github.com/AliceGameLand/Dot-Launcher/issues"
 
 [ejs.welcome]
 welcomeHeader = "귀염뽀쨕도트 런처에 오신 것을 환영합니다"
-welcomeDescription = "런처가 Minecraft 26.2, NeoForge와 필요한 모드를 자동으로 준비합니다. Microsoft 계정으로 로그인하면 버컴퍼니 다이아몬드 대결을 시작할 수 있습니다."
+welcomeDescription = "런처가 Minecraft 26.2, NeoForge와 필요한 모드를 자동으로 준비합니다. Microsoft 계정으로 로그인하고 게임을 시작하세요."
 welcomeDescCTA = "몇 번의 클릭이면 모험을 시작할 수 있어요."
 
 [js.landing.dlAsync]
