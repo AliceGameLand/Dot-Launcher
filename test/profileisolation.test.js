@@ -31,6 +31,7 @@ test('new profiles keep Alice accounts, legacy settings and game data untouched'
     assert.equal(configManager.getLauncherDirectory(), dotDirectory)
     assert.equal(configManager.getDataDirectory(), path.join(directory, '.dotlauncher'))
     assert.equal(configManager.getInstanceDirectory(), path.join(directory, '.dotlauncher', 'instances'))
+    assert.notEqual(configManager.getTempNativeFolder(), 'WCNatives')
     assert.deepEqual(Object.keys(configManager.getAuthAccounts()), [])
     assert.equal(fs.readFileSync(aliceConfigPath, 'utf8'), aliceConfig)
     assert.ok(fs.existsSync(path.join(dotDirectory, 'config.json')))
