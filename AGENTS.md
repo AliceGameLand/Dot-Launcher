@@ -16,7 +16,7 @@
 
 - 앱 ID는 `kr.dreamcraft.dot.launcher`, 설정 폴더는 `dot-launcher`, 게임 폴더는 `.dotlauncher`다. 앨리스 계정·캐시·인스턴스를 자동으로 가져오지 않는다.
 
-- 다이아ck 접속 주소는 `alicehiyam.dreamcraft.kr:25568`이다. 콘텐츠 전용 AliceDiamondClient와 alice-diamond 리소스팩은 포함하지 않는다.
+- 다이아ck 접속 주소는 `alicehiyam.dreamcraft.kr:25567`이다. 콘텐츠 전용 AliceDiamondClient와 alice-diamond 리소스팩은 포함하지 않는다.
 
 ## 신규 설치 기본값
 

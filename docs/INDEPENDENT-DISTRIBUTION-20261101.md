@@ -5,7 +5,7 @@
 ## 변경
 
 - 게임 배포를 AliceGameLand/Dot-Distribution으로 분리했습니다. 런타임 배포 인덱스와 게임 파일은 원본 AliceGameLand-Distribution을 참조하지 않습니다. NeoForge·Minecraft 공용 라이브러리는 제작사 공식 저장소를 사용합니다.
-- 표시 이름: 다이아ck. 독립 ID: DiamondCK-26.2. 접속 주소: alicehiyam.dreamcraft.kr:25568.
+- 표시 이름: 다이아ck. 독립 ID: DiamondCK-26.2. 접속 주소: alicehiyam.dreamcraft.kr:25567.
 - AliceDiamondClient와 alice-diamond 전용 리소스팩을 제외했습니다. 옵션의 전용 리소스팩 선택도 제거했습니다. 새 ID의 인스턴스 폴더를 사용하여 기존 콘텐츠 파일을 가져오지 않습니다.
 - Donation, 가방과 가방 코어, 최적화·한글·미니맵 유틸리티를 유지했습니다. 서버 목록을 새 이름·주소로 생성하고 기존 사용자 옵션·Iris·서버 목록은 덮어쓰지 않습니다.
 - 런처 환영 문구에서 버컴퍼니 다이아몬드 대결 문구를 제거했습니다. 공개 저장소 설명과 README는 간단한 소개를 유지합니다.

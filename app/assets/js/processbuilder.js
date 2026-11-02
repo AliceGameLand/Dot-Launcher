@@ -10,6 +10,7 @@ const path                  = require('path')
 
 const ConfigManager            = require('./configmanager')
 const { disableTutorial }      = require('./gameoptions')
+const { migrateServerAddress } = require('./serverlist')
 
 const logger = LoggerUtil.getLogger('ProcessBuilder')
 
@@ -52,6 +53,9 @@ class ProcessBuilder {
         }
         fs.ensureDirSync(this.gameDir)
         disableTutorial(this.gameDir)
+        if(this.server.rawServer.id === 'DiamondCK-26.2'){
+            migrateServerAddress(this.gameDir, 'alicehiyam.dreamcraft.kr:25568', this.server.rawServer.address)
+        }
         this.quarantineUnmanagedMods()
         const tempNativePath = path.join(os.tmpdir(), ConfigManager.getTempNativeFolder(), crypto.pseudoRandomBytes(16).toString('hex'))
         process.throwDeprecation = true
