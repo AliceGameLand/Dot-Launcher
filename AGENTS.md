@@ -2,7 +2,7 @@
 
 ## 프로젝트 구조
 
-- 이 저장소는 Electron 기반 Helios 런처다. 게임 파일은 `AliceGameLand/Dot-Distribution` 공개 배포를 읽으며 `DiamondCK-26.2`(다이아ck)만 허용한다. 원본 런처나 배포 저장소를 변경하지 않는다.
+- 이 저장소는 Electron 기반 Helios 런처다. 게임 파일은 `AliceGameLand/Dot-Distribution` 공개 배포를 읽으며 `DiamondCK-26.2`(꼼모리님 다이아)와 `MaybeSurvival-26.3`(아마도 야생)만 허용한다. 원본 런처나 배포 저장소를 변경하지 않는다.
 - 게임 설정은 서버별 `instances/<서버 ID>/options.txt`와 `config/iris.properties`에 저장된다. 런처 소스와 배포 매니페스트를 함께 확인한다.
 - 기존 작업 파일과 사용자 설정을 보존한다. 요청 범위 밖의 변경, 배포, 게임 또는 서버 실행은 하지 않는다.
 
@@ -17,6 +17,7 @@
 - 앱 ID는 `kr.dreamcraft.dot.launcher`, 설정 폴더는 `dot-launcher`, 게임 폴더는 `.dotlauncher`다. 앨리스 계정·캐시·인스턴스를 자동으로 가져오지 않는다.
 
 - 다이아ck 접속 주소는 `alicehiyam.dreamcraft.kr:25567`이다. 콘텐츠 전용 AliceDiamondClient와 alice-diamond 리소스팩은 포함하지 않는다.
+- 아마도 야생은 Fabric 26.3 클라이언트이며 주소는 `oracle01.dreamcraft.kr:25566`다. 서버는 Oracle Main의 `/home/ubuntu/streamer/maybe-survival`에서 Purpur 26.3·Java 25·4GB로 실행하고 EssentialsX와 Skript만 설치한다. PvP HUD·후원·미니맵은 포함하지 않는다.
 
 ## 신규 설치 기본값
 

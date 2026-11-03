@@ -119,3 +119,54 @@ test('old Alice remote data cannot replace the new independent cached instance',
     assert.equal(result.getMainServer().rawServer.id, 'DiamondCK-26.2')
     assert.equal(result.getServerById('AliceDiamond-26.2'), null)
 })
+
+function survival(){
+    return {
+        id: 'MaybeSurvival-26.3', name: '아마도 야생', mainServer: true,
+        address: 'oracle01.dreamcraft.kr:25566', minecraftVersion: '26.3',
+        modules: [{ id: 'survival:options', name: 'options', type: 'File', artifact: {
+            path: 'options.txt', url: 'https://example.test/survival-options.txt', size: 2
+        } }]
+    }
+}
+
+test('remote and cached indexes expose both managed servers with Diamond as default', async t => {
+    const source = fixture()
+    source.servers.unshift(survival())
+    const { api, directory, respondWith } = await setup(t, source)
+    const result = await api.getDistribution()
+    assert.deepEqual(result.servers.map(server => server.rawServer.id), ['DiamondCK-26.2', 'MaybeSurvival-26.3'])
+    assert.equal(result.getMainServer().rawServer.id, 'DiamondCK-26.2')
+    assert.equal(result.getServerById('MaybeSurvival-26.3').rawServer.mainServer, false)
+    assert.deepEqual(result.getServerById('MaybeSurvival-26.3').rawServer.modules, source.servers[0].modules)
+    const cached = JSON.parse(await fs.readFile(path.join(directory, 'distribution.json'), 'utf8'))
+    assert.equal(cached.servers.length, 2)
+    respondWith({}, 404)
+    assert.equal((await api.refreshDistributionOrFallback()).servers.length, 2)
+    assert.equal(source.servers[0].mainServer, true)
+})
+
+test('duplicate or malformed Survival cannot overwrite a valid two-server cache', async t => {
+    for(const entries of [[survival(), survival()], [{ ...survival(), modules: null }]]){
+        const original = fixture()
+        original.servers.push(survival())
+        const remote = fixture()
+        remote.servers.push(...entries)
+        const { api, directory } = await setup(t, remote)
+        const contents = JSON.stringify(original)
+        await fs.writeFile(path.join(directory, 'distribution.json'), contents)
+        assert.equal((await api.getDistribution()).servers.length, 2)
+        assert.equal(await fs.readFile(path.join(directory, 'distribution.json'), 'utf8'), contents)
+    }
+})
+
+test('development indexes allow Survival alongside the existing Diamond instance', async t => {
+    const source = fixture()
+    source.servers.push(survival())
+    const { api, directory } = await setup(t, {})
+    api.toggleDevMode(true)
+    await fs.writeFile(path.join(directory, 'distribution_dev.json'), JSON.stringify(source))
+    const result = await api.getDistributionLocalLoadOnly()
+    assert.equal(result.servers.length, 2)
+    assert.equal(result.getMainServer().rawServer.id, 'DiamondCK-26.2')
+})
