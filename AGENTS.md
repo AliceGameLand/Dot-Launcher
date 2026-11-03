@@ -17,7 +17,7 @@
 - 앱 ID는 `kr.dreamcraft.dot.launcher`, 설정 폴더는 `dot-launcher`, 게임 폴더는 `.dotlauncher`다. 앨리스 계정·캐시·인스턴스를 자동으로 가져오지 않는다.
 
 - 다이아ck 접속 주소는 `alicehiyam.dreamcraft.kr:25567`이다. 콘텐츠 전용 AliceDiamondClient와 alice-diamond 리소스팩은 포함하지 않는다.
-- 아마도 야생은 Fabric 26.3 클라이언트이며 주소는 `oracle01.dreamcraft.kr:25566`다. 서버는 Oracle Main의 `/home/ubuntu/streamer/maybe-survival`에서 Purpur 26.3·Java 25·4GB로 실행하고 EssentialsX와 Skript만 설치한다. PvP HUD·후원·미니맵은 포함하지 않는다.
+- 아마도 야생은 Fabric 26.3 클라이언트이며 주소는 `oracle01.dreamcraft.kr:25566`다. 서버는 Oracle Main의 `/home/ubuntu/streamer/maybe-survival`에서 Purpur 26.3·Java 25·4GB로 실행하고 EssentialsX와 Skript만 설치한다. 클라이언트에 JourneyMap 6.0.10 미니맵을 포함하며 PvP HUD·후원은 포함하지 않는다.
 
 ## 신규 설치 기본값
 
