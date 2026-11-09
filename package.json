@@ -1,6 +1,6 @@
 {
   "name": "dot-launcher",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "productName": "귀염뽀쨕도트 런처",
   "description": "귀염뽀쨕도트 Minecraft 런처",
   "author": "JooHwan Kim <gptnr2140@gmail.com>",
@@ -16,10 +16,11 @@
     "postinstall": "patch-package",
     "runtime:prepare": "node scripts/prepare-bundled-java.mjs",
     "dist": "electron-builder build",
-    "dist:win": "npm run runtime:prepare && npm run dist -- -w",
+    "dist:win": "npm run runtime:prepare && npm run dist:setup",
     "dist:mac": "npm run dist -- -m",
     "dist:linux": "npm run dist -- -l",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "dist:setup": "node scripts/build-setup.mjs"
   },
   "engines": {
     "node": "22.x.x"

@@ -13,7 +13,7 @@ publish:
   repo: Dot-Launcher
 
 files:
-  - '!{dist,runtime,.runtime-cache,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,eslint.config.mjs}'
+  - '!{dist,installer,scripts,test,runtime,.runtime-cache,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,eslint.config.mjs}'
 
 extraResources:
   - 'libraries'

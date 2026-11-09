@@ -12,7 +12,7 @@ npm ci
 npm start
 ```
 
-Windows 빌드: `npm run dist:win -- --publish never`
+Windows 설치 마법사는 `npm run dist:win`으로 빌드합니다. 설치 파일과 업데이트 피드는 `dist/custom-setup/`에 생성됩니다.
 
 ## 원본 및 라이선스
 
