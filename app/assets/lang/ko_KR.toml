@@ -20,7 +20,7 @@ reportIssue = "문제 신고"
 reportIssueHint = "브라우저에서 문제 신고 페이지 열기"
 launcherVersion = "런처"
 loadingServer = "서버 목록을 불러오는 중…"
-artDescription = "성 앞 정원에 있는 앨리스와 토끼"
+artDescription = "마인크래프트 해변 오두막"
 
 [ejs.loginOptions]
 welcomeTitle = "귀염뽀쨕도트 런처에 오신 걸 환영해요"

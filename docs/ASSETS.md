@@ -12,7 +12,7 @@ Use case: background-extraction. Edit target: the provided square hand-drawn cha
 
 ## 배경과 서버 아이콘
 
-- 기본 정원 배경과 다이아 광산 배경은 [AliceGameLand-Launcher](https://github.com/AliceGameLand/AliceGameLand-Launcher/tree/aae5c458df7ed73ade0cdb1621d9027b504e7735/app/assets/images/backgrounds)에서 가져왔습니다. 아마도 야생은 기본 정원 배경을 사용합니다.
+- 홈, 로그인, 로딩 화면의 배경은 1.0.3에서 쓰던 [Minecraft 공식 Beach Cabin 배경화면](https://www.minecraft.net/en-us/collectibles)입니다.
 - 서버 선택에 쓰는 다이아와 잔디 블록 아이콘은 [Dot-Distribution](https://github.com/AliceGameLand/Dot-Distribution/tree/main/metadata)의 이미지를 사용합니다.
 
 이 런처는 Mojang 또는 Microsoft의 공식 제품이 아닙니다.

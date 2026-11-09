@@ -20,7 +20,7 @@ reportIssue = "Report an issue"
 reportIssueHint = "Open the issue page in your browser"
 launcherVersion = "Launcher"
 loadingServer = "Loading servers…"
-artDescription = "Alice and a rabbit in the garden in front of the castle"
+artDescription = "Minecraft beach cabin"
 
 [ejs.loginOptions]
 welcomeTitle = "Welcome to Dot Launcher"

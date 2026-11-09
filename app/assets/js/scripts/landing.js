@@ -11,7 +11,6 @@ const DiscordWrapper    = require('./assets/js/discordwrapper')
 const NeoForgeInstaller = require('./assets/js/neoforgeinstaller')
 const ProcessBuilder    = require('./assets/js/processbuilder')
 const { createLaunchDiagnostic } = require('./assets/js/launchdiagnostic')
-const { DEFAULT_BACKGROUND, getServerBackground } = require('./assets/js/serverart')
 const { clipboard: launchClipboard } = require('electron')
 
 const launchButton      = document.getElementById('launch_button')
@@ -23,8 +22,6 @@ const launchPercent     = document.getElementById('launch_progress_label')
 const launchDetailsText = document.getElementById('launch_details_text')
 const homeServerList    = document.getElementById('homeServerList')
 const homeServerName    = document.getElementById('homeServerName')
-const homeArtwork       = document.querySelector('.home-art')
-const transitionArtwork = require('./assets/js/artworktransition').createArtworkTransition(homeArtwork)
 const homeServerMeta    = document.getElementById('homeServerMeta')
 const homeServerStatus  = document.getElementById('homeServerStatus')
 const openGameFolderButton = document.getElementById('openGameFolderButton')
@@ -36,10 +33,6 @@ let launchInProgress = false
 let gameFolderOpening = false
 const runningGames = new Map()
 let launchAttempt = 0
-
-homeArtwork.addEventListener('error', () => {
-    if(homeArtwork.getAttribute('src') !== DEFAULT_BACKGROUND) homeArtwork.src = DEFAULT_BACKGROUND
-})
 
 function refreshLaunchControls(){
     openGameFolderButton.disabled = gameFolderOpening || ConfigManager.getSelectedServer() == null
