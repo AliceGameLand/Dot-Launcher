@@ -261,9 +261,6 @@ function updateSelectedServer(server, distro){
         renderHomeServerList(distro)
     }
 
-    const background = getServerBackground(id)
-    void transitionArtwork(background)
-    homeArtwork.alt = server?.rawServer.name ?? Lang.queryJS('landing.artDescription')
     for(const button of homeServerList.querySelectorAll('button')){
         button.setAttribute('aria-pressed', String(button.dataset.serverId === id && !ConfigManager.isServerSelectionRequired()))
     }
