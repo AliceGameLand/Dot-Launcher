@@ -5,31 +5,13 @@
     <script src="./assets/js/scripts/uicore.js"></script>
     <script src="./assets/js/scripts/uibinder.js"></script>
     <link type="text/css" rel="stylesheet" href="./assets/css/launcher.css">
-    <style>
-        body {
-            background: url('assets/images/backgrounds/0.jpg') center / cover no-repeat fixed;
-            background-color: #25342d;
-            -webkit-user-select: none;
-        }
-        #main {
-            display: none;
-            height: calc(100% - 22px);
-            background: linear-gradient(to top, rgba(15, 24, 23, 0.88) 0%, rgba(15, 24, 23, 0.08) 55%, rgba(15, 24, 23, 0.35) 100%);
-            width: 100%;
-            position: absolute;
-            z-index: 10;
-        }
-        #main[overlay] {
-            filter: blur(3px) contrast(0.9) brightness(1.0);
-        }
-    </style>
 </head>
-<body bkid="<%=bkid%>">
+<body class="launcher-starting">
     <%- include('frame') %>
     <div id="main">
-        <%- include('welcome') %>
         <%- include('waiting') %>
         <%- include('loginOptions') %>
+        <%- include('serverSetup') %>
         <%- include('settings') %>
         <%- include('landing') %>
     </div>
@@ -39,7 +21,7 @@
             <img id="loadCenterImage" src="assets/images/LoadingSeal.png" alt="">
             <div id="loadingCopy">
                 <div id="loadingTitle"><%= lang('app.title') %></div>
-                <div id="loadingSubtitle">런처를 준비하는 중...</div>
+                <div id="loadingSubtitle"><%= lang('app.loading') %></div>
                 <div id="loadingBar" aria-hidden="true"></div>
             </div>
         </div>

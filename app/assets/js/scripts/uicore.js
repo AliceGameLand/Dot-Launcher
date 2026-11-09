@@ -50,22 +50,27 @@ if(!isDev){
                 
                 if(process.platform === 'darwin'){
                     info.darwindownload = `https://github.com/AliceGameLand/Dot-Launcher/releases/download/v${info.version}/${encodeURIComponent(`귀염뽀쨕도트 런처-setup-${info.version}-${process.arch}.dmg`)}`
-                    showUpdateUI(info)
                 }
                 
                 populateSettingsUpdateInformation(info)
+                showUpdateUI()
+                break
+            case 'download-progress':
+                settingsUpdateDownloadProgress(info)
                 break
             case 'update-downloaded':
+                settingsUpdateDownloadProgress()
                 loggerAutoUpdater.info('Update ' + info.version + ' ready to be installed.')
                 settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.installNowButton'), false, () => {
                     if(!isDev){
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
                     }
                 })
-                showUpdateUI(info)
+                showUpdateUI()
                 break
             case 'update-not-available':
                 loggerAutoUpdater.info('No new update found.')
+                showUpdateUI(false)
                 populateSettingsUpdateInformation(null, true)
                 break
             case 'ready':
@@ -76,6 +81,7 @@ if(!isDev){
                 break
             case 'realerror':
                 // A failed check must leave a retry action instead of a disabled checking button.
+                showUpdateUI(false)
                 populateSettingsUpdateInformation(null)
                 settingsUpdateTitle.innerHTML = Lang.queryJS('settings.updates.checkFailedTitle')
                 settingsUpdateButtonStatus(Lang.queryJS('settings.updates.retryButton'))
@@ -109,33 +115,9 @@ function changeAllowPrerelease(val){
     ipcRenderer.send('autoUpdateAction', 'allowPrereleaseChange', val)
 }
 
-function showUpdateUI(info){
-    //TODO Make this message a bit more informative `${info.version}`
-    document.getElementById('image_seal_container').setAttribute('update', true)
-    document.getElementById('image_seal_container').onclick = () => {
-        /*setOverlayContent('Update Available', 'A new update for the launcher is available. Would you like to install now?', 'Install', 'Later')
-        setOverlayHandler(() => {
-            if(!isDev){
-                ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
-            } else {
-                console.error('Cannot install updates in development environment.')
-                toggleOverlay(false)
-            }
-        })
-        setDismissHandler(() => {
-            toggleOverlay(false)
-        })
-        toggleOverlay(true, true)*/
-        switchView(getCurrentView(), VIEWS.settings, 500, 500, () => {
-            settingsNavItemListener(document.getElementById('settingsNavUpdate'), false)
-        })
-    }
+function showUpdateUI(available = true){
+    document.getElementById('launcherUpdateButton').hidden = !available
 }
-
-/* jQuery Example
-$(function(){
-    loggerUICore.info('UICore Initialized');
-})*/
 
 document.addEventListener('readystatechange', function () {
     if (document.readyState === 'interactive'){
@@ -170,29 +152,6 @@ document.addEventListener('readystatechange', function () {
                 document.activeElement.blur()
             })
         })
-
-        // Remove focus from social media buttons once they're clicked.
-        Array.from(document.getElementsByClassName('mediaURL')).map(val => {
-            val.addEventListener('click', e => {
-                document.activeElement.blur()
-            })
-        })
-
-    } else if(document.readyState === 'complete'){
-
-        //266.01
-        //170.8
-        //53.21
-        // Bind progress bar length to length of bot wrapper
-        //const targetWidth = document.getElementById("launch_content").getBoundingClientRect().width
-        //const targetWidth2 = document.getElementById("server_selection").getBoundingClientRect().width
-        //const targetWidth3 = document.getElementById("launch_button").getBoundingClientRect().width
-
-        document.getElementById('launch_details').style.maxWidth = 266.01
-        document.getElementById('launch_progress').style.width = 170.8
-        document.getElementById('launch_details_right').style.maxWidth = 170.8
-        document.getElementById('launch_progress_label').style.width = 53.21
-        
     }
 
 }, false)

@@ -24,6 +24,9 @@ LangLoader.setupLanguage()
 
 // Setup auto updater.
 function initAutoUpdater(event, data) {
+    autoUpdater.disableDifferentialDownload = true
+    autoUpdater.autoDownload = false
+    autoUpdater.autoInstallOnAppQuit = false
 
     if(data){
         autoUpdater.allowPrerelease = true
@@ -41,6 +44,9 @@ function initAutoUpdater(event, data) {
     }
     autoUpdater.on('update-available', (info) => {
         event.sender.send('autoUpdateNotification', 'update-available', info)
+    })
+    autoUpdater.on('download-progress', info => {
+        event.sender.send('autoUpdateNotification', 'download-progress', { percent:info.percent, transferred:info.transferred, total:info.total })
     })
     autoUpdater.on('update-downloaded', (info) => {
         event.sender.send('autoUpdateNotification', 'update-downloaded', info)
@@ -85,6 +91,11 @@ ipcMain.on('autoUpdateAction', (event, arg, data) => {
         case 'installUpdateNow':
             autoUpdater.quitAndInstall()
             break
+        case 'downloadUpdate':
+            autoUpdater.downloadUpdate().catch(err => {
+                event.sender.send('autoUpdateNotification', 'realerror', err)
+            })
+            break
         default:
             console.log('Unknown argument', arg)
             break
@@ -110,6 +121,7 @@ ipcMain.handle(SHELL_OPCODE.TRASH_ITEM, async (event, ...args) => {
     }
 })
 
+if(process.platform === 'win32') app.setAppUserModelId('kr.dreamcraft.dot.launcher')
 // Disable hardware acceleration.
 // https://electronjs.org/docs/tutorial/offscreen-rendering
 app.disableHardwareAcceleration()
@@ -246,7 +258,6 @@ function createWindow() {
     remoteMain.enable(win.webContents)
 
     const data = {
-        bkid: 0,
         lang: (str, placeHolders) => LangLoader.queryEJS(str, placeHolders)
     }
     Object.entries(data).forEach(([key, val]) => ejse.data(key, val))
